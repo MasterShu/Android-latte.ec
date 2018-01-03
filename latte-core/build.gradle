@@ -26,10 +26,29 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.0.0-beta1'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    api 'com.android.support:appcompat-v7:26.1.0'
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:0.5'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
-    implementation project(':latte-annotations')
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    api project(':latte-annotations')
+    // 字体图标
+    api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
+    // (v4.5)
+    api 'com.joanzapata.iconify:android-iconify-entypo:2.2.2'
+    // (v3,2015)
+    api 'com.joanzapata.iconify:android-iconify-typicons:2.2.2'
+    // (v2.0.7)
+    api 'com.joanzapata.iconify:android-iconify-material:2.2.2'
+    // (v2.0.0)
+    api 'com.joanzapata.iconify:android-iconify-material-community:2.2.2'
+    // (v1.4.57)
+    api 'com.joanzapata.iconify:android-iconify-meteocons:2.2.2'
+    // (latest)
+    api 'com.joanzapata.iconify:android-iconify-weathericons:2.2.2'
+    // (v2.0)
+    api 'com.joanzapata.iconify:android-iconify-simplelineicons:2.2.2'
+    // (v1.0.0)
+    api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
+    // (v2.0.1)
 }
