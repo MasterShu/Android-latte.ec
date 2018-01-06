@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
@@ -17,8 +18,10 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 // 这个不希望以后实例化这个类, 所以使用 abstract 抽象
 public abstract class BaseDelegate extends SwipeBackFragment {
 
+    @SuppressWarnings("SpellCheckingInspection")
     private Unbinder mUnbinder = null;
     public abstract Object setLayout();
+    public abstract void onBindView(@Nullable Bundle savedInstanceState, View rootView);
 
     @Nullable
     @Override
@@ -29,7 +32,19 @@ public abstract class BaseDelegate extends SwipeBackFragment {
         } else if(setLayout() instanceof View) {
             rootView = (View) setLayout();
         }
-        return super.onCreateView(inflater, container, savedInstanceState);
+        if (rootView != null) {
+            mUnbinder = ButterKnife.bind(this, rootView);
+            onBindView(savedInstanceState, rootView);
+        }
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
     }
 }
 

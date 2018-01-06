@@ -61,4 +61,8 @@ dependencies {
     api 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 
+    // 网络请求
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+
+
 }
