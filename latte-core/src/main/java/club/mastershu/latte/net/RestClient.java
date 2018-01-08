@@ -7,8 +7,10 @@ import club.mastershu.latte.net.callback.IError;
 import club.mastershu.latte.net.callback.IFailure;
 import club.mastershu.latte.net.callback.IRequest;
 import club.mastershu.latte.net.callback.ISuccess;
+import club.mastershu.latte.net.callback.RequestCallbacks;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.Callback;
 
 /**
  * Created by Administrator on 2018/1/6.
@@ -29,7 +31,7 @@ public class RestClient {
                       ISuccess success,
                       IError error,
                       IFailure failure,
-                       RequestBody body) {
+                      RequestBody body) {
         URL = url;
         PARAMS.putAll(params);
         REQUEST = request;
@@ -69,7 +71,32 @@ public class RestClient {
         }
 
         if (call != null) {
-            call.enqueue();
+            call.enqueue(getRequestCallback());
         }
     }
+
+    private Callback<String> getRequestCallback() {
+        return new RequestCallbacks(
+                REQUEST,
+                SUCCESS,
+                ERROR,
+                FAILURE
+                );
+    }
+
+    public final void get() {
+        request(HttpMethod.GET);
+    }
+    public final void post() {
+        request(HttpMethod.POST);
+    }
+    public final void delete() {
+        request(HttpMethod.DELETE);
+    }
+    public final void put() {
+        request(HttpMethod.PUT);
+    }
 }
+
+
+

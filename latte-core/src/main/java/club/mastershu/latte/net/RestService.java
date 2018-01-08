@@ -33,7 +33,7 @@ public interface RestService {
 
     @FormUrlEncoded
     @PUT
-    Call<String> put(@Url String url, @@FieldMap Map<String, Object> params);
+    Call<String> put(@Url String url, @FieldMap Map<String, Object> params);
 
     @DELETE
     Call<String> delete(@Url String url, @QueryMap Map<String, Object> params);

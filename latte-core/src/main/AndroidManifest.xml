@@ -1,2 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="club.mastershu.latte" />
+    package="club.mastershu.latte">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
