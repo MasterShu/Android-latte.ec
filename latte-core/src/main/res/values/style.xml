@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <!--去边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--悬浮-->
+        <item name="android:windowIsFloating">true</item>
+        <!--半透明-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!--标题设置无-->
+        <item name="android:windowNoTitle">true</item>
+        <!--设置背景 透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--模糊 允许-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--全屏 允许-->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

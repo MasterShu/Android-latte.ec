@@ -1,5 +1,9 @@
 package club.mastershu.latte.net.callback;
 
+import android.os.Handler;
+
+import club.mastershu.latte.ui.LatteLoader;
+import club.mastershu.latte.ui.LoaderStyle;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,12 +17,15 @@ public class RequestCallbacks implements Callback<String>{
     private final ISuccess SUCCESS;
     private final IError ERROR;
     private final IFailure FAILURE;
+    private final LoaderStyle LOADER_STYLE;
+    private static final Handler HANDLER= new Handler();
 
-    public RequestCallbacks(IRequest request, ISuccess success, IError error, IFailure failure) {
+    public RequestCallbacks(IRequest request, ISuccess success, IError error, IFailure failure, LoaderStyle style) {
         REQUEST = request;
         SUCCESS = success;
         ERROR = error;
         FAILURE = failure;
+        LOADER_STYLE = style;
     }
 
     @Override
@@ -34,6 +41,8 @@ public class RequestCallbacks implements Callback<String>{
                 ERROR.onError(response.code(), response.message());
             }
         }
+
+        stopLoading();
     }
 
     @Override
@@ -44,6 +53,18 @@ public class RequestCallbacks implements Callback<String>{
 
         if (REQUEST != null) {
             REQUEST.onRequestEnd();
+        }
+        stopLoading();
+    }
+
+    private void stopLoading() {
+        if (LOADER_STYLE != null) {
+            HANDLER.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    LatteLoader.stopLoading();
+                }
+            }, 1000);
         }
     }
 }
