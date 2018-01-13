@@ -6,13 +6,16 @@ import com.joanzapata.iconify.Iconify;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * Created by Administrator on 2017/12/31.
  */
 
 public class Configurator {
-    private static final HashMap<String, Object> LATTE_CONFIGS = new HashMap<>();
+    private static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
         //.name() 是以字符串输出
@@ -24,7 +27,7 @@ public class Configurator {
     public static Configurator getInstance() {
         return Hodler.INSTANCE;
     }
-    final HashMap<String, Object> getLatteConfigs() {
+    final HashMap<Object, Object> getLatteConfigs() {
         return LATTE_CONFIGS;
     }
     private static class Hodler {
@@ -69,5 +72,16 @@ public class Configurator {
     final <T> T getConfiguration (Enum<ConfigType> key) {
         checkConfigurator();
         return (T) LATTE_CONFIGS.get(key.name());
+    }
+
+    public final Configurator withInterceptor(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        LATTE_CONFIGS.put(ConfigType.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
+        INTERCEPTORS.addAll(interceptors);
+        LATTE_CONFIGS.put(ConfigType.INTERCEPTOR, INTERCEPTORS);
+        return this;
     }
 }

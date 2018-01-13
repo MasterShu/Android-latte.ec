@@ -14,12 +14,22 @@ public final class Latte {
         return Configurator.getInstance();
     }
 
-    public static HashMap<String, Object> getConfigurations() {
+    public static HashMap<Object, Object> getConfigurations() {
         return Configurator.getInstance().getLatteConfigs();
+    }
+    public static Configurator getConfigurator() {
+        return Configurator.getInstance();
+    }
+    public static <T> T getConfiguration(Object key) {
+        return getConfigurator().getConfiguration((Enum<ConfigType>) key);
     }
 
     public static Context getApplication() {
         return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
+    }
+
+    public static Context getApplicationContext() {
+        return getConfiguration(ConfigType.APPLICATION_CONTEXT);
     }
 }
 

@@ -20,7 +20,7 @@ import retrofit2.http.Url;
  * Created by Administrator on 2018/1/13.
  */
 
-public class SaveFileTask extends AsyncTask<Object, void, File> {
+public class SaveFileTask extends AsyncTask<Object, Void, File> {
     private final IRequest REQUEST;
     private final ISuccess SUCCESS;
 

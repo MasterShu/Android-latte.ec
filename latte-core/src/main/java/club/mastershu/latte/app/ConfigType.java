@@ -14,5 +14,6 @@ public enum ConfigType {
     API_HOST,   // 网络请求域名
     APPLICATION_CONTEXT,    // 应用的上下文
     CONFIG_READ,    // 控制初始化后完成度
-    ICON    // 存储字体初始化配置
+    ICON,    // 存储字体初始化配置
+    INTERCEPTOR //
 }
