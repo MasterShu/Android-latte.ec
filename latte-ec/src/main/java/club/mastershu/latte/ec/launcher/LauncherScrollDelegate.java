@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import club.mastershu.latte.delegates.LatteDelegate;
 import club.mastershu.latte.ec.R;
 import club.mastershu.latte.ui.launcher.LauncherHolderCreate;
+import club.mastershu.latte.ui.launcher.ScrollLauncherTag;
+import club.mastershu.latte.util.storage.LattePreference;
 
 /**
  * Created by Administrator on 2018/1/30.
@@ -50,6 +52,9 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
 
     @Override
     public void onItemClick(int position) {
-
+        // 判断点击的是否为最后一个
+        if (position == INTEGERS.size() - 1) {
+            LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(),true);
+        }
     }
 }

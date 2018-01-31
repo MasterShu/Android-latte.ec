@@ -13,6 +13,8 @@ import butterknife.OnClick;
 import club.mastershu.latte.delegates.LatteDelegate;
 import club.mastershu.latte.ec.R;
 import club.mastershu.latte.ec.R2;
+import club.mastershu.latte.ui.launcher.ScrollLauncherTag;
+import club.mastershu.latte.util.storage.LattePreference;
 import club.mastershu.latte.util.timer.BaseTimerTask;
 import club.mastershu.latte.util.timer.ITimerListener;
 
@@ -30,7 +32,11 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
-
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+            checkIsShowScroll();
+        }
     }
 
     private void initTimer() {
@@ -42,6 +48,15 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     @Override
     public Object setLayout() {
         return R.layout.delegate_launcher;
+    }
+
+    // 判断是否展示滑动启动页
+    private void checkIsShowScroll() {
+        if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
+            start(new LauncherScrollDelegate(), SINGLETASK);
+        } else {
+            // 检查用户是否登录
+        }
     }
 
     @Override
@@ -61,6 +76,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                         if (mTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
+                            checkIsShowScroll();
                         }
                     }
                 }
