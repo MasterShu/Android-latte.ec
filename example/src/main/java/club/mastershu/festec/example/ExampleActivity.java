@@ -11,6 +11,7 @@ import club.mastershu.latte.app.Latte;
 import club.mastershu.latte.delegates.LatteDelegate;
 import club.mastershu.latte.ec.launcher.LauncherDelegate;
 import club.mastershu.latte.ec.launcher.LauncherScrollDelegate;
+import club.mastershu.latte.ec.sign.SignUpDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
@@ -25,6 +26,6 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignUpDelegate();
     }
 }
