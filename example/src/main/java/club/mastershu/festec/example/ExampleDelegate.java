@@ -28,7 +28,7 @@ public class ExampleDelegate extends LatteDelegate {
     }
 
     private void testRequestClient() {
-        RestClient.bulider()
+        RestClient.builder()
                 .url("http://127.0.0.1/index")
                 .loader(getContext())
                 .success(new ISuccess() {

@@ -12,6 +12,9 @@ import butterknife.OnClick;
 import club.mastershu.latte.delegates.LatteDelegate;
 import club.mastershu.latte.ec.R;
 import club.mastershu.latte.ec.R2;
+import club.mastershu.latte.net.RestClient;
+import club.mastershu.latte.net.callback.ISuccess;
+import club.mastershu.latte.util.log.LatteLogger;
 
 /**
  * Created by Administrator on 2018/1/31.
@@ -43,28 +46,28 @@ public class SignUpDelegate extends LatteDelegate {
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
         if (checkForm()) {
-//            RestClient.builder()
-//                    .url("http://192.168.56.1:8080/RestDataServer/api/user_profile.php")
-//                    .params("name", mName.getText().toString())
-//                    .params("email", mEmail.getText().toString())
-//                    .params("phone", mPhone.getText().toString())
-//                    .params("password", mPassword.getText().toString())
-//                    .success(new ISuccess() {
-//                        @Override
-//                        public void onSuccess(String response) {
-//                            LatteLogger.json("USER_PROFILE", response);
-//                            SignHandler.onSignUp(response, mISignListener);
-//                        }
-//                    })
-//                    .build()
-//                    .post();
+            RestClient.builder()
+                    .url("http://192.168.56.1:8080/RestDataServer/api/user_profile.php")
+                    .params("name", mName.getText().toString())
+                    .params("email", mEmail.getText().toString())
+                    .params("phone", mPhone.getText().toString())
+                    .params("password", mPassword.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE", response);
+                            SignHandler.onSignUp(response);
+                        }
+                    })
+                    .build()
+                    .post();
             Toast.makeText(getContext(), " pass verity ", Toast.LENGTH_SHORT).show();
         }
     }
 
     @OnClick(R2.id.tv_link_sign_in)
     void onClickLink() {
-//        getSupportDelegate().start(new SignInDelegate());
+        getSupportDelegate().start(new SignInDelegate());
     }
 
     private boolean checkForm() {

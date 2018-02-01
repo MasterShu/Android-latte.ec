@@ -89,5 +89,12 @@ dependencies {
     // json
     api 'com.alibaba:fastjson:1.2.44'
 
+    //Log
+    api 'com.orhanobut:logger:2.1.1'
+
+    // greenDAO
+    api 'org.greenrobot:greendao:3.2.2'
+    api 'org.greenrobot:greendao-generator:3.2.2'
+
 
 }

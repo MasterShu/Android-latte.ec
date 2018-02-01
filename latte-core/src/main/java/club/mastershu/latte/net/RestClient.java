@@ -61,7 +61,7 @@ public class RestClient {
         BODY = body;
     }
 
-    public static RestClientBuilder bulider() {
+    public static RestClientBuilder builder() {
         return new RestClientBuilder();
     }
 
@@ -151,6 +151,7 @@ public class RestClient {
     public final void download() {
         new DownloadHandler(URL, REQUEST, SUCCESS, ERROR, FAILURE, DOWNLOAD_DIR, EXTENSION, NAME).handlerDownload();
     }
+
 }
 
 

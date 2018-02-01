@@ -22,4 +22,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':latte-ec')
     annotationProcessor project(':latte-compiler')
+//    api projects(':server-local')
+    api 'com.facebook.stetho:stetho:1.5.0'
+    api 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 }
