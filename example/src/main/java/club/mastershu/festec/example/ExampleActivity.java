@@ -11,9 +11,10 @@ import club.mastershu.latte.app.Latte;
 import club.mastershu.latte.delegates.LatteDelegate;
 import club.mastershu.latte.ec.launcher.LauncherDelegate;
 import club.mastershu.latte.ec.launcher.LauncherScrollDelegate;
+import club.mastershu.latte.ec.sign.ISignListener;
 import club.mastershu.latte.ec.sign.SignUpDelegate;
 
-public class ExampleActivity extends ProxyActivity {
+public class ExampleActivity extends ProxyActivity implements ISignListener {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,4 +29,15 @@ public class ExampleActivity extends ProxyActivity {
     public LatteDelegate setRootDelegate() {
         return new SignUpDelegate();
     }
+
+    @Override
+    public void onSignInSuccess() {
+
+    }
+
+    @Override
+    public void onSignUpSuccess() {
+        Toast.makeText(this, "register success", Toast.LENGTH_SHORT).show();
+    }
+
 }
